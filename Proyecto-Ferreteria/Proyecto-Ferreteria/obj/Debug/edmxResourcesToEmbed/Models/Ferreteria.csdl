@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FerreteriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="canton">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="codigoProvincia" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="Int32" Nullable="false" />
+    <Property Name="canton1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Carrito">
+    <Key>
+      <PropertyRef Name="IdCarrito" />
+    </Key>
+    <Property Name="IdCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="IdProducto" Type="Int32" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Carrito__IdProdu__534D60F1" FromRole="Carrito" ToRole="Producto" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Carrito__IdUsuar__52593CB8" FromRole="Carrito" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Compra">
+    <Key>
+      <PropertyRef Name="IdCompra" />
+    </Key>
+    <Property Name="IdCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="TotalProducto" Type="Int32" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IdDistrito" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCompra" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Compra__IdUsuari__5629CD9C" FromRole="Compra" ToRole="Usuario" />
+    <NavigationProperty Name="Detalle_Compra" Relationship="Self.FK__Detalle_C__IdCom__59FA5E80" FromRole="Compra" ToRole="Detalle_Compra" />
+  </EntityType>
+  <EntityType Name="Detalle_Compra">
+    <Key>
+      <PropertyRef Name="IdDetalleCompra" />
+    </Key>
+    <Property Name="IdDetalleCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCompra" Type="Int32" />
+    <Property Name="IdProducto" Type="Int32" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Compra" Relationship="Self.FK__Detalle_C__IdCom__59FA5E80" FromRole="Detalle_Compra" ToRole="Compra" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Detalle_C__IdPro__5AEE82B9" FromRole="Detalle_Compra" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="distrito">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="codigoProvincia" Type="Int32" />
+    <Property Name="codigoCanton" Type="Int32" />
+    <Property Name="codigo" Type="Int32" />
+    <Property Name="distrito1" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="RutaImagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK__Carrito__IdProdu__534D60F1" FromRole="Producto" ToRole="Carrito" />
+    <NavigationProperty Name="Detalle_Compra" Relationship="Self.FK__Detalle_C__IdPro__5AEE82B9" FromRole="Producto" ToRole="Detalle_Compra" />
+  </EntityType>
+  <EntityType Name="provincia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="Int32" />
+    <Property Name="provincia1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EsAdministrador" Type="Boolean" />
+    <Property Name="Activo" Type="Boolean" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK__Carrito__IdUsuar__52593CB8" FromRole="Usuario" ToRole="Carrito" />
+    <NavigationProperty Name="Compra" Relationship="Self.FK__Compra__IdUsuari__5629CD9C" FromRole="Usuario" ToRole="Compra" />
+  </EntityType>
+  <Association Name="FK__Carrito__IdProdu__534D60F1">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="Carrito">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Carrito__IdUsuar__52593CB8">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Carrito">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Compra__IdUsuari__5629CD9C">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Detalle_C__IdCom__59FA5E80">
+    <End Role="Compra" Type="Self.Compra" Multiplicity="0..1" />
+    <End Role="Detalle_Compra" Type="Self.Detalle_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compra">
+        <PropertyRef Name="IdCompra" />
+      </Principal>
+      <Dependent Role="Detalle_Compra">
+        <PropertyRef Name="IdCompra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Detalle_C__IdPro__5AEE82B9">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="Detalle_Compra" Type="Self.Detalle_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="Detalle_Compra">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FerreteriaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="canton" EntityType="Self.canton" />
+    <EntitySet Name="Carrito" EntityType="Self.Carrito" />
+    <EntitySet Name="Compra" EntityType="Self.Compra" />
+    <EntitySet Name="Detalle_Compra" EntityType="Self.Detalle_Compra" />
+    <EntitySet Name="distrito" EntityType="Self.distrito" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="provincia" EntityType="Self.provincia" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__Carrito__IdProdu__534D60F1" Association="Self.FK__Carrito__IdProdu__534D60F1">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Carrito" EntitySet="Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Carrito__IdUsuar__52593CB8" Association="Self.FK__Carrito__IdUsuar__52593CB8">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Carrito" EntitySet="Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Compra__IdUsuari__5629CD9C" Association="Self.FK__Compra__IdUsuari__5629CD9C">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Compra" EntitySet="Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Detalle_C__IdCom__59FA5E80" Association="Self.FK__Detalle_C__IdCom__59FA5E80">
+      <End Role="Compra" EntitySet="Compra" />
+      <End Role="Detalle_Compra" EntitySet="Detalle_Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Detalle_C__IdPro__5AEE82B9" Association="Self.FK__Detalle_C__IdPro__5AEE82B9">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Detalle_Compra" EntitySet="Detalle_Compra" />
+    </AssociationSet>
+    <FunctionImport Name="editarProducto">
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="Stock" Mode="In" Type="Int32" />
+      <Parameter Name="Activo" Mode="In" Type="Boolean" />
+      <Parameter Name="Resultado" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerCompra" ReturnType="Collection(String)">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="obtenerProducto" ReturnType="Collection(String)" />
+    <FunctionImport Name="obtenerUsuario" ReturnType="Collection(FerreteriaModel.obtenerUsuario_Result)">
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Contrasena" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="registrarCompra">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="TotalProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Total" Mode="In" Type="Decimal" />
+      <Parameter Name="Contacto" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="IdDistrito" Mode="In" Type="String" />
+      <Parameter Name="QueryDetalleCompra" Mode="In" Type="String" />
+      <Parameter Name="Resultado" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="registrarProducto">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="Stock" Mode="In" Type="Int32" />
+      <Parameter Name="RutaImagen" Mode="In" Type="String" />
+      <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="registrarUsuario">
+      <Parameter Name="Nombres" Mode="In" Type="String" />
+      <Parameter Name="Apellidos" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Contrasena" Mode="In" Type="String" />
+      <Parameter Name="EsAdministrador" Mode="In" Type="Boolean" />
+      <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="obtenerUsuario_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="Nombres" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Apellidos" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Contrasena" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="EsAdministrador" Nullable="true" />
+  </ComplexType>
+</Schema>
