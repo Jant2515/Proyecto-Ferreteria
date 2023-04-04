@@ -1,6 +1,7 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Compras";
-    Layout = "~/Views/Shared/_Layout_Ferreteria.cshtml";
+    Layout = "~/Views/Shared/_Layout_Tienda.cshtml";
 }
 <style>
     .accordion-button {
@@ -39,7 +40,7 @@
 
         $(document).ready(function () {
            jQuery.ajax({
-                url: '@Url.Action("ObtenerCompra", "Tienda")',
+                url: '@Url.Action("ObtenerCompra", "Ferreteria")',
                 type: "GET",
                 data: null,
                 dataType: "json",

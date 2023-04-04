@@ -1,10 +1,10 @@
 ﻿using System;
-using Proyecto_Ferreteria.Models;
-using Proyecto_Ferreteria.Logica;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Proyecto_Ferreteria.Logica;
+using Proyecto_Ferreteria.Models;
 using System.Web.Security;
 
 namespace Proyecto_Ferreteria.Controllers
@@ -51,7 +51,7 @@ namespace Proyecto_Ferreteria.Controllers
         // GET: Login
         public ActionResult Registrarse()
         {
-            return View(new Usuario() { Nombres = "", Apellidos = "", Correo = "", Contrasena = ""});
+            return View(new Usuario() { Nombres = "", Apellidos = "", Correo = "", Contrasena = "", ConfirmarContrasena = "" });
         }
 
         [HttpPost]
@@ -63,8 +63,19 @@ namespace Proyecto_Ferreteria.Controllers
                 Apellidos = NApellidos,
                 Correo = NCorreo,
                 Contrasena = NContrasena,
+                ConfirmarContrasena = NConfirmarContrasena,
                 EsAdministrador = false
             };
+
+            if (NContrasena != NConfirmarContrasena)
+            {
+                ViewBag.Error = "Las contraseñas no coinciden";
+                return View(oUsuario);
+            }
+            else
+            {
+
+
                 int idusuario_respuesta = UsuarioLogica.Instancia.Registrar(oUsuario);
 
                 if (idusuario_respuesta == 0)
@@ -77,6 +88,7 @@ namespace Proyecto_Ferreteria.Controllers
                 {
                     return RedirectToAction("Index", "Login");
                 }
+            }
         }
 
     }

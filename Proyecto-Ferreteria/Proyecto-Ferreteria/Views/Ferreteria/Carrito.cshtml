@@ -1,6 +1,7 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Carrito";
-    Layout = "~/Views/Shared/_Layout_Ferreteria.cshtml";
+    Layout = "~/Views/Shared/_Layout_Tienda.cshtml";
 }
 
 <div class="row mt-5 pt-5 p-2">
@@ -11,7 +12,7 @@
                     <div class="product-details mr-2">
                         <div class="d-flex justify-content-between">
                             <span class="ml-2">Detalle Compra</span>
-                            <a class="btn btn-danger" href="@Url.Action("Index","Tienda")">Volver</a>
+                            <a class="btn btn-danger" href="@Url.Action("Index","Ferreteria")">Volver</a>
                         </div>
                         <hr class="mt-2 mb-2">
                         <div class="justify-content-start mb-2">
@@ -81,12 +82,12 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-1">
-                        <label for="recipient-name" class="col-form-label pt-0">Departamento:</label>
-                        <select id="cboDepartamento" class="form-select control-validar"></select>
+                        <label for="recipient-name" class="col-form-label pt-0">Provincia:</label>
+                        <select id="cboProvincia" class="form-select control-validar"></select>
                     </div>
                     <div class="mb-1">
-                        <label for="recipient-name" class="col-form-label">Provincia:</label>
-                        <select id="cboProvincia" class="form-select control-validar"></select>
+                        <label for="recipient-name" class="col-form-label">Canton:</label>
+                        <select id="cboCanton" class="form-select control-validar"></select>
                     </div>
                     <div class="mb-1">
                         <label for="recipient-name" class="col-form-label">Distrito:</label>
@@ -120,7 +121,7 @@
 
         $(document).ready(function () {
             jQuery.ajax({
-                url: '@Url.Action("ObtenerCarrito", "Tienda")',
+                url: '@Url.Action("ObtenerCarrito", "Ferreteria")',
                 type: "GET",
                 data: null,
                 dataType: "json",
@@ -201,7 +202,7 @@
 
 
             jQuery.ajax({
-                url: '@Url.Action("EliminarCarrito", "Tienda")',
+                url: '@Url.Action("EliminarCarrito", "Ferreteria")',
                 type: "POST",
                 data: JSON.stringify({ IdCarrito: json._IdCarrito, IdProducto: json._IdProducto }),
                 dataType: "json",
@@ -276,21 +277,21 @@
 
         })
 
-        function ListarDepartamento() {
+        function ListarProvincia() {
             jQuery.ajax({
-                url: '@Url.Action("ObtenerDepartamento", "Tienda")',
+                url: '@Url.Action("ObtenerProvincia", "Ferreteria")',
                 type: "POST",
                 data: null,
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    $("<option>").attr({ "value": "00","disabled":"disabled","selected":"true" }).text("Seleccionar").appendTo("#cboDepartamento");
+                    $("<option>").attr({ "value": "00","disabled":"disabled","selected":"true" }).text("Seleccionar").appendTo("#cboProvincia");
                     if (data.lista != null) {
                         $.each(data.lista, function (i, v) {
-                            $("<option>").attr({ "value": v.IdDepartamento }).text(v.Descripcion).appendTo("#cboDepartamento");
+                            $("<option>").attr({ "value": v.IdDepartamento }).text(v.Descripcion).appendTo("#cboProvincia");
                         });
                     }
-                    ListarProvincia();
+                    ListarCanton();
                 },
                 error: function (error) {
                     console.log(error)
@@ -300,23 +301,23 @@
             });
         }
 
-        $("#cboDepartamento").on("change", function () {
-            ListarProvincia();
+        $("#cboProvincia").on("change", function () {
+            ListarCanton();
         });
 
-        function ListarProvincia() {
+        function ListarCanton() {
             jQuery.ajax({
-                url: '@Url.Action("ObtenerProvincia", "Tienda")',
+                url: '@Url.Action("ObtenerCanton", "Ferreteria")',
                 type: "POST",
-                data: JSON.stringify({ _IdDepartamento: $("#cboDepartamento option:selected").val() }),
+                data: JSON.stringify({ _IdDepartamento: $("#cboProvincia option:selected").val() }),
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    $("#cboProvincia").html("");
-                    $("<option>").attr({ "value": "00","disabled":"disabled","selected":"true" }).text("Seleccionar").appendTo("#cboProvincia");
+                    $("#cboCanton").html("");
+                    $("<option>").attr({ "value": "00","disabled":"disabled","selected":"true" }).text("Seleccionar").appendTo("#cboCanton");
                     if (data.lista != null) {
                         $.each(data.lista, function (i, v) {
-                            $("<option>").attr({ "value": v.IdProvincia}).text(v.Descripcion).appendTo("#cboProvincia");
+                            $("<option>").attr({ "value": v.IdProvincia}).text(v.Descripcion).appendTo("#cboCanton");
                         });
                     }
                     ListarDistrito();
@@ -329,15 +330,15 @@
             });
         }
 
-        $("#cboProvincia").on("change", function () {
+        $("#cboCanton").on("change", function () {
             ListarDistrito();
         });
 
         function ListarDistrito() {
             jQuery.ajax({
-                url: '@Url.Action("ObtenerDistrito", "Tienda")',
+                url: '@Url.Action("ObtenerDistrito", "Ferreteria")',
                 type: "POST",
-                data: JSON.stringify({ _IdProvincia: $("#cboProvincia option:selected").val(),_IdDepartamento: $("#cboDepartamento option:selected").val() }),
+                data: JSON.stringify({ _IdCanton: $("#cboCanton option:selected").val(),_IdProvincia: $("#cboProvincia option:selected").val() }),
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
@@ -406,7 +407,7 @@
                 }
 
                 jQuery.ajax({
-                    url: '@Url.Action("RegistrarCompra", "Tienda")',
+                    url: '@Url.Action("RegistrarCompra", "Ferreteria")',
                     type: "POST",
                     data: JSON.stringify(request),
                     dataType: "json",
@@ -414,7 +415,7 @@
                     success: function (data) {
                         if (data.resultado) {
                             swal("Compra Realizada", "Pronto te informaremos la entrega de tu pedido", "success").then((value) => {
-                                 window.location.href = "@Url.Action("Index", "Tienda")"
+                                 window.location.href = "@Url.Action("Index", "Ferreteria")"
                             });
                         } else {
                             swal("Lo sentimos", "No se  pudo completar la compra", "warning");
@@ -431,5 +432,6 @@
 
 
     </script>
-}
 
+
+}

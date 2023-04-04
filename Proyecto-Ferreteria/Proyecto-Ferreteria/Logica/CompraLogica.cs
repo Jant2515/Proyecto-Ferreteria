@@ -1,11 +1,11 @@
-﻿using Proyecto_Ferreteria.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
+using Proyecto_Ferreteria.Models;
 
 namespace Proyecto_Ferreteria.Logica
 {
@@ -40,7 +40,7 @@ namespace Proyecto_Ferreteria.Logica
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    foreach (Detalle_Compra dc in oCompra.oDetalleCompra)
+                    foreach (Detalle_Compra dc in oCompra.oDetalle_Compra)
                     {
                         query.AppendLine("insert into detalle_compra(IdCompra,IdProducto,Cantidad,Total) values (¡idcompra!," + dc.IdProducto + "," + dc.Cantidad + "," + dc.Total + ")");
                     }
@@ -69,5 +69,8 @@ namespace Proyecto_Ferreteria.Logica
             }
             return respuesta;
         }
+
+
+
     }
 }

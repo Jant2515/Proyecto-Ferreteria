@@ -5,10 +5,9 @@ using System.Web;
 
 namespace Proyecto_Ferreteria.Models
 {
-    public class provincia
+    public class Provincia
     {
-        public int id { get; set; }
-        public int codigo { get; set; }
-        public string provincias { get; set; }
+        public string IdProvincia { get; set; }
+        public string Descripcion { get; set; }
     }
 }

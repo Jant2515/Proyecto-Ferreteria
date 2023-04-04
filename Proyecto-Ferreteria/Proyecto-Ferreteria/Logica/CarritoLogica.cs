@@ -1,14 +1,15 @@
 ﻿using System;
-using Proyecto_Ferreteria.Models;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Text;
 using System.Web;
-using System.Xml;
+using Proyecto_Ferreteria.Models;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace Proyecto_Ferreteria.Logica
 {
@@ -179,8 +180,8 @@ namespace Proyecto_Ferreteria.Logica
                                                     select new Compra()
                                                     {
                                                         Total = Convert.ToDecimal(c.Element("Total").Value, new CultureInfo("es-PE")),
-                                                        FechaCompra = c.Element("Fecha").Value,
-                                                        oDetalleCompra = (from d in c.Element("DETALLE_PRODUCTO").Elements("PRODUCTO")
+                                                        FechaTexto = c.Element("Fecha").Value,
+                                                        oDetalle_Compra = (from d in c.Element("DETALLE_PRODUCTO").Elements("PRODUCTO")
                                                                           select new Detalle_Compra()
                                                                           {
                                                                               oProducto = new Producto()

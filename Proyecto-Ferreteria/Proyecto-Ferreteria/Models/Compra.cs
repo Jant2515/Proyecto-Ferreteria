@@ -15,7 +15,7 @@ namespace Proyecto_Ferreteria.Models
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public string IdDistrito { get; set; }
-        public string FechaCompra { get; set; }
-        public List<Detalle_Compra> oDetalleCompra { get; set; }
+        public string FechaTexto { get; set; }
+        public List<Detalle_Compra> oDetalle_Compra { get; set; }
     }
 }

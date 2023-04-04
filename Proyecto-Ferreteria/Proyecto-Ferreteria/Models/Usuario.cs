@@ -12,8 +12,8 @@ namespace Proyecto_Ferreteria.Models
         public string Apellidos { get; set; }
         public string Correo { get; set; }
         public string Contrasena { get; set; }
+        public string ConfirmarContrasena { get; set; }
         public bool EsAdministrador { get; set; }
         public bool Activo { get; set; }
-        public DateTime FechaRegistro { get; set; }
     }
 }

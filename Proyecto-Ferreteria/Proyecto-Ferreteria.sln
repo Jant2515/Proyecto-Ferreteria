@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto_Ferreteria", "Proyecto-Ferreteria\Proyecto_Ferreteria.csproj", "{741E467A-A866-4C7D-BE65-87B5BFEC9026}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto-Ferreteria", "Proyecto-Ferreteria\Proyecto-Ferreteria.csproj", "{FF40505A-143E-4974-BA6C-07C48CF0D68A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{741E467A-A866-4C7D-BE65-87B5BFEC9026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{741E467A-A866-4C7D-BE65-87B5BFEC9026}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{741E467A-A866-4C7D-BE65-87B5BFEC9026}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{741E467A-A866-4C7D-BE65-87B5BFEC9026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF40505A-143E-4974-BA6C-07C48CF0D68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF40505A-143E-4974-BA6C-07C48CF0D68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF40505A-143E-4974-BA6C-07C48CF0D68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF40505A-143E-4974-BA6C-07C48CF0D68A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {795BAF80-412B-40E4-A382-BD0B85446FF4}
+		SolutionGuid = {E1958C04-214B-4D72-8B79-92FF2FF0F5F5}
 	EndGlobalSection
 EndGlobal

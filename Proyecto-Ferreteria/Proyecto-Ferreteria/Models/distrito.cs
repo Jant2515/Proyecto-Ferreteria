@@ -5,12 +5,11 @@ using System.Web;
 
 namespace Proyecto_Ferreteria.Models
 {
-    public class distrito
+    public class Distrito
     {
-        public int id { get; set; }
-        public int codigoProvincia { get; set; }
-        public int codigoCanton { get; set; }
-        public int codigo { get; set; }
-        public string distritos { get; set; }
+        public string IdDistrito { get; set; }
+        public string Descripcion { get; set; }
+        public string IdProvincia { get; set; }
+        public string IdCanton { get; set; }
     }
 }

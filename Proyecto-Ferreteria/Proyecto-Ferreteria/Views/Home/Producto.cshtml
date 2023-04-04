@@ -25,8 +25,6 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Descripcion</th>
-                    <th>Marca</th>
-                    <th>Categoria</th>
                     <th>Precio</th>
                     <th>Stock</th>
                     <th>Activo</th>
@@ -69,21 +67,6 @@
                             <div class="mb-2">
                                 <label for="txtdescripcion" class="form-label">Descripcion</label>
                                 <textarea type="text" rows="5" class="form-control required" id="txtdescripcion" name="descripcion" autocomplete="off"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="mb-2">
-                                <label for="cbomarca" class="form-label">Marca</label>
-                                <select id="cbomarca" class="form-select"></select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="mb-2">
-                                <label for="cbocategoria" class="form-label">Categoria</label>
-                                <select id="cbocategoria" class="form-select"></select>
                             </div>
                         </div>
                     </div>
@@ -162,17 +145,6 @@
                     "columns": [
                         { "data": "Nombre" },
                         { "data": "Descripcion" },
-                        {
-                            "data": "oMarca", render: function (data) {
-
-                                return data.Descripcion
-                            }
-                        },
-                        {
-                            "data": "oCategoria", render: function (data) {
-                                return data.Descripcion
-                            }
-                        },
                         { "data": "Precio" },
                         { "data": "Stock" },
                         {
@@ -207,44 +179,6 @@
                     }
             });
 
-            jQuery.ajax({
-                url: '@Url.Action("ListarCategoria", "Home")',
-                type: "GET",
-                data: null,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $.each(data.data, function (index, value) {
-                        $("<option>").attr({ "value": value.IdCategoria }).text(value.Descripcion).appendTo("#cbocategoria");
-                    });
-                },
-                error: function (error) {
-                    console.log(error)
-                },
-                beforeSend: function () {
-
-                },
-            });
-
-            jQuery.ajax({
-                url: '@Url.Action("ListarMarca", "Home")',
-                type: "GET",
-                data: null,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $.each(data.data, function (index, value) {
-                        $("<option>").attr({ "value": value.IdMarca }).text(value.Descripcion).appendTo("#cbomarca");
-                    });
-                },
-                error: function (error) {
-                    console.log(error)
-                },
-                beforeSend: function () {
-
-                },
-            });
-
         });
 
 
@@ -261,8 +195,6 @@
             $("#img_producto").attr({ "src": "" });
             $("#txtnombre").val("");
             $("#txtdescripcion").val("");
-            $("#cbomarca").val($("#cbomarca option:first").val());
-            $("#cbocategoria").val($("#cbocategoria option:first").val());
             $("#txtprecio").val("");
             $("#txtstock").val("");
             $("#cboEstado").val(1);
@@ -277,8 +209,6 @@
                 $("#img_producto").attr({ "src": "data:image/" + json.extension + ";base64," + json.base64});
                 $("#txtnombre").val(json.Nombre);
                 $("#txtdescripcion").val(json.Descripcion);
-                $("#cbomarca").val(json.oMarca.IdMarca);
-                $("#cbocategoria").val(json.oCategoria.IdCategoria);
                 $("#txtprecio").val(json.Precio);
                 $("#txtstock").val(json.Stock);
                 $("#cboEstado").val(json.Activo == true ? 1 : 0);
@@ -326,8 +256,6 @@
                 IdProducto: $("#txtid").val(),
                 Nombre: $("#txtnombre").val(),
                 Descripcion: $("#txtdescripcion").val(),
-                oMarca: {IdMarca : $("#cbomarca option:selected").val()},
-                oCategoria: { IdCategoria : $("#cbocategoria option:selected").val() },
                 Precio: $("#txtprecio").val(),
                 Stock: $("#txtstock").val(),
                 RutaImagen : "",
@@ -390,3 +318,4 @@
     </script>
 
 }
+

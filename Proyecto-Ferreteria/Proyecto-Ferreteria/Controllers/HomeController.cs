@@ -1,35 +1,19 @@
 ﻿using System;
-using Proyecto_Ferreteria.Models;
-using Proyecto_Ferreteria.Logica;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
-using System.IO;
-using System.Text.RegularExpressions;
+using Proyecto_Ferreteria.Logica;
+using Proyecto_Ferreteria.Models;
 
 namespace Proyecto_Ferreteria.Controllers
 {
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-            if (Session["Usuario"] == null)
-                return RedirectToAction("Index", "Login");
-
-            return View();
-        }
-
-        public ActionResult Categoria()
-        {
-            if (Session["Usuario"] == null)
-                return RedirectToAction("Index", "Login");
-
-            return View();
-        }
-
-        public ActionResult Marca()
         {
             if (Session["Usuario"] == null)
                 return RedirectToAction("Index", "Login");
@@ -45,13 +29,14 @@ namespace Proyecto_Ferreteria.Controllers
             return View();
         }
 
-        public ActionResult Tienda()
+        public ActionResult Ferreteria()
         {
             if (Session["Usuario"] == null)
                 return RedirectToAction("Index", "Login");
 
             return View();
         }
+
 
 
         [HttpGet]

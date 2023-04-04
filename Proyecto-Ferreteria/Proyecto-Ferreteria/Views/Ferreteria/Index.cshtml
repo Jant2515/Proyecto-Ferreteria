@@ -1,6 +1,7 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout_Ferreteria.cshtml";
+    Layout = "~/Views/Shared/_Layout_Tienda.cshtml";
 }
 
 <div class="row mt-5">
@@ -23,82 +24,24 @@
 
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Seleccione una Categoría</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row row-categoria">
-                </div>
-
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-
 @section scripts{
 
     <script>
 
-        $(".btn-ver-categoria").click(function () {
-            jQuery.ajax({
-                url: '@Url.Action("ListarCategoria", "Tienda")',
-                type: "GET",
-                data: null,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $(".row-categoria").html("");
-                    $(".modal-body").LoadingOverlay("hide");
-                    if (data.data != null) {
-                        $("<div>").addClass("col-4").append(
-                            $("<button>").addClass("btn btn-outline-primary btn-categoria m-1 w-100").text("Ver Todos").attr({ "onclick":"listarProductos(0)"})
-                        ).appendTo(".row-categoria")
-
-                        $.each(data.data, function (i, item) {
-                            $("<div>").addClass("col-4").append(
-                                $("<button>").addClass("btn btn-outline-primary btn-categoria m-1 w-100").text(item.Descripcion).attr({ "onclick": "listarProductos("+ item.IdCategoria +")" })
-                            ).appendTo(".row-categoria")
-                        });
-                    }
-                },
-                error: function (error) {
-                    console.log(error)
-                },
-                beforeSend: function () {
-                    $(".modal-body").LoadingOverlay("show");
-                },
-            });
-
-            $('#exampleModal').modal('show');
-        });
-
         $(document).ready(function () {
-            listarProductos(0);
+            listarProductos();
         })
 
         $(document).on('click', '.btn-detalle', function (event) {
             var json = $(this).data("elemento")
-            window.location.href = "@Url.Action("Producto", "Tienda")" + "?idproducto=" + json.IdProducto;
-        });
-
-        $(document).on('click', '.btn-categoria', function (event) {
-            $('#exampleModal').modal('hide');
+            window.location.href = "@Url.Action("Producto", "Ferreteria")" + "?idproducto=" + json.IdProducto;
         });
 
 
-        function listarProductos(_idcategoria) {
+        function listarProductos() {
             jQuery.ajax({
-                url: '@Url.Action("ListarProducto", "Tienda")',
+                url: '@Url.Action("ListarProducto", "Ferreteria")',
                 type: "POST",
-                data: JSON.stringify({ idcategoria: _idcategoria}),
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
@@ -147,5 +90,8 @@
         }
 
     </script>
+
+
+
 }
 
