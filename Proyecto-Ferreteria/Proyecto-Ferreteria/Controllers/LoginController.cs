@@ -42,7 +42,7 @@ namespace Proyecto_Ferreteria.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Tienda");
+                return RedirectToAction("Index", "Ferreteria");
             }
 
 
