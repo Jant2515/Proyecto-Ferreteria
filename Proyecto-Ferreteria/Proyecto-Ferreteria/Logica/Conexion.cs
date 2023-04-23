@@ -7,6 +7,10 @@ namespace Proyecto_Ferreteria.Logica
 {
     public class Conexion
     {
-        public static string CN = "Data Source=.;Initial Catalog=DB_FERRETERIA;Integrated Security=True";
+        //nancy
+        public static string CN = "Data Source=localhost\\SQLEXPRESS;Database=master; Trusted_Connection=True;Initial Catalog=DB_FERRETERIA;Integrated Security=True";
+
+        //original proyecto
+        //public static string CN = "Data Source=.;Initial Catalog=DB_FERRETERIA;Integrated Security=True";
     }
 }
