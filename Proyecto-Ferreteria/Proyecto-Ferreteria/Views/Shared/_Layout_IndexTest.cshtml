@@ -54,32 +54,29 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
                             <ul class="user-login">
-                                <i class="lni lni-user"></i>
 
-                                Navbar
-                                @{ 
+
+
+                                @{
                                     if (((Proyecto_Ferreteria.Models.Usuario)Session["Usuario"]).EsAdministrador == false)
                                     {
 
-                                <ul class="navbar-nav me-2">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="@Url.Action("Index", "Ferreteria")">Ir a la Ferreteria</a></li>
-                                            <li><a class="dropdown-item" href="@Url.Action("Compras", "Ferreteria")">Mis Compras</a></li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                            <li><a class="dropdown-item" href="@Url.Action("CerrarSesion", "Ferreteria")">Cerrar Sesión</a></li>
+                                        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                    <li><a class="dropdown-item" href="@Url.Action("Compras","Ferreteria")">Mis Compras</a></li>
+                                                    <li><a class="dropdown-item" href="@Url.Action("CerrarSesion","Ferreteria")">Cerrar Sesión</a></li>
+                                                </ul>
+                                            </li>
                                         </ul>
-                                    </li>
-                                </ul>
-
                                     }
                                     else
                                     {
-                                <li class="user-login">
-                                    <a href="@Url.Action("Index", "Login")" class="login-button">Iniciar sesión</a>
+                                        <li class="user-login">
+                                            <a href="@Url.Action("Index", "Login")" class="login-button">Iniciar sesión</a>
 
-                                </li>
+                                        </li>
                                     }
                                 }
                             </ul>
