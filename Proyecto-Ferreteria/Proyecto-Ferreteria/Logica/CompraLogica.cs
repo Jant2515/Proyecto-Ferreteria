@@ -52,7 +52,6 @@ namespace Proyecto_Ferreteria.Logica
                     cmd.Parameters.AddWithValue("Contacto", oCompra.Contacto);
                     cmd.Parameters.AddWithValue("Telefono", oCompra.Telefono);
                     cmd.Parameters.AddWithValue("Direccion", oCompra.Direccion);
-                    cmd.Parameters.AddWithValue("IdDistrito", oCompra.IdDistrito);
                     cmd.Parameters.AddWithValue("QueryDetalleCompra", query.ToString());
                     cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;

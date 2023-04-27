@@ -81,18 +81,7 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="mb-1">
-                        <label for="recipient-name" class="col-form-label pt-0">Provincia:</label>
-                        <select id="cboProvincia" class="form-select control-validar"></select>
-                    </div>
-                    <div class="mb-1">
-                        <label for="recipient-name" class="col-form-label">Canton:</label>
-                        <select id="cboCanton" class="form-select control-validar"></select>
-                    </div>
-                    <div class="mb-1">
-                        <label for="recipient-name" class="col-form-label">Distrito:</label>
-                        <select id="cboDistrito" class="form-select control-validar"></select>
-                    </div>
+                
                     <div class="mb-1">
                         <label for="message-text" class="col-form-label">Contacto:</label>
                         <input type="text" class="form-control control-validar" autocomplete="off" id="txtContacto">
@@ -245,9 +234,6 @@
         }
 
         $("#btnProcesarPago").on("click", function (e) {
-            $("#cboDepartamento").val($("#cboDepartamento option:first").val());
-            $("#cboProvincia").val($("#cboProvincia option:first").val());
-            $("#cboDistrito").val($("#cboDistrito option:first").val());
             $("#txtContacto").val("");
             $("#txtTelefono").val("");
             $("#txtDireccion").val("");
@@ -275,87 +261,6 @@
             $("#mdprocesopago").modal("show");
 
         })
-
-        function ListarProvincia() {
-            jQuery.ajax({
-                url: '@Url.Action("ObtenerProvincia", "Ferreteria")',
-                type: "POST",
-                data: null,
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $("<option>").attr({ "value": "00","disabled":"disabled","selected":"true" }).text("Seleccionar").appendTo("#cboProvincia");
-                    if (data.lista != null) {
-                        $.each(data.lista, function (i, v) {
-                            $("<option>").attr({ "value": v.IdDepartamento }).text(v.Descripcion).appendTo("#cboProvincia");
-                        });
-                    }
-                    ListarCanton();
-                },
-                error: function (error) {
-                    console.log(error)
-                },
-                beforeSend: function () {
-                },
-            });
-        }
-
-        $("#cboProvincia").on("change", function () {
-            ListarCanton();
-        });
-
-        function ListarCanton() {
-            jQuery.ajax({
-                url: '@Url.Action("ObtenerCanton", "Ferreteria")',
-                type: "POST",
-                data: JSON.stringify({ _IdDepartamento: $("#cboProvincia option:selected").val() }),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $("#cboCanton").html("");
-                    $("<option>").attr({ "value": "00","disabled":"disabled","selected":"true" }).text("Seleccionar").appendTo("#cboCanton");
-                    if (data.lista != null) {
-                        $.each(data.lista, function (i, v) {
-                            $("<option>").attr({ "value": v.IdProvincia}).text(v.Descripcion).appendTo("#cboCanton");
-                        });
-                    }
-                    ListarDistrito();
-                },
-                error: function (error) {
-                    console.log(error)
-                },
-                beforeSend: function () {
-                },
-            });
-        }
-
-        $("#cboCanton").on("change", function () {
-            ListarDistrito();
-        });
-
-        function ListarDistrito() {
-            jQuery.ajax({
-                url: '@Url.Action("ObtenerDistrito", "Ferreteria")',
-                type: "POST",
-                data: JSON.stringify({ _IdCanton: $("#cboCanton option:selected").val(),_IdProvincia: $("#cboProvincia option:selected").val() }),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $("#cboDistrito").html("");
-                    $("<option>").attr({ "value": "00", "disabled": "disabled", "selected": "true" }).text("Seleccionar").appendTo("#cboDistrito");
-                    if (data.lista != null) {
-                        $.each(data.lista, function (i, v) {
-                            $("<option>").attr({ "value": v.IdProvincia }).text(v.Descripcion).appendTo("#cboDistrito");
-                        });
-                    }
-                },
-                error: function (error) {
-                    console.log(error)
-                },
-                beforeSend: function () {
-                },
-            });
-        }
 
         $("#btnConfirmarCompra").on("click", function (e) {
 
@@ -399,8 +304,7 @@
                         Contacto: $("#txtContacto").val(),
                         Telefono: $("#txtTelefono").val(),
                         Direccion: $("#txtDireccion").val(),
-                        IdDistrito: $("#cboDistrito").val(),
-                        oDetalleCompra: detalle
+                        oDetalle_Compra: detalle
                     }
 
                 }

@@ -3,8 +3,10 @@
     "",
     "\\Proyecto-Ferreteria",
     "\\Proyecto-Ferreteria\\Proyecto-Ferreteria",
-    "\\Proyecto-Ferreteria\\Proyecto-Ferreteria\\Logica"
+    "\\Proyecto-Ferreteria\\Proyecto-Ferreteria\\Logica",
+    "\\Proyecto-Ferreteria\\Proyecto-Ferreteria\\Views",
+    "\\Proyecto-Ferreteria\\Proyecto-Ferreteria\\Views\\Shared"
   ],
-  "SelectedNode": "\\Proyecto-Ferreteria\\Proyecto-Ferreteria\\Logica\\Conexion.cs",
+  "SelectedNode": "\\Proyecto-Ferreteria\\Proyecto-Ferreteria\\Views\\Shared\\_Layout_IndexTest.cshtml",
   "PreviewInSolutionExplorer": false
 }

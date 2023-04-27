@@ -261,16 +261,12 @@
     <Compile Include="Logica\CompraLogica.cs" />
     <Compile Include="Logica\Conexion.cs" />
     <Compile Include="Logica\ProductoLogica.cs" />
-    <Compile Include="Logica\UbicacionLogica.cs" />
     <Compile Include="Logica\UsuarioLogica.cs" />
     <Compile Include="Logica\Utilidades.cs" />
-    <Compile Include="Models\Canton.cs" />
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\Detalle_Compra.cs" />
-    <Compile Include="Models\Distrito.cs" />
     <Compile Include="Models\Producto.cs" />
-    <Compile Include="Models\Provincia.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Ferreteria\IndexTestController.cs" />

@@ -168,30 +168,6 @@ namespace Proyecto_Ferreteria.Controllers
         }
 
         [HttpPost]
-        public JsonResult ObtenerProvincia()
-        {
-            List<Provincia> oLista = new List<Provincia>();
-            oLista = UbicacionLogica.Instancia.ObtenerProvincia();
-            return Json(new { lista = oLista }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult ObtenerCanton(string _IdProvincia)
-        {
-            List<Canton> oLista = new List<Canton>();
-            oLista = UbicacionLogica.Instancia.ObtenerCanton(_IdProvincia);
-            return Json(new { lista = oLista }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult ObtenerDistrito(string _IdProvincia, string _IdCanton)
-        {
-            List<Distrito> oLista = new List<Distrito>();
-            oLista = UbicacionLogica.Instancia.ObtenerDistrito(_IdProvincia, _IdCanton);
-            return Json(new { lista = oLista }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
         public JsonResult RegistrarCompra(Compra oCompra)
         {
             bool respuesta = false;
