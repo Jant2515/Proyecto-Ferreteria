@@ -31,8 +31,6 @@ namespace Proyecto_Ferreteria.Controllers
 
         public ActionResult Ferreteria()
         {
-            if (Session["Usuario"] == null)
-                return RedirectToAction("Index", "Login");
 
             return View();
         }
